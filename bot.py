@@ -13,6 +13,7 @@ functions.initk()
 functions.greenk('зеленая кнопка')
 functions.newlinek()
 functions.bluek('синяя кнопка')
+functions.urlk('Мы в гитхабе', 'github.comhetelber')
 
 #Подключение к вк
 token = settings.token
@@ -21,17 +22,18 @@ longpoll = VkLongPoll(vk)
 vk = vk.get_api()
 
 #Отправка сообщений
-for event in longpoll.listen():
-    if event.type == VkEventType.MESSAGE_NEW:
-        try:
-            if event.to_me:
-                m = event.text
-                m = m.lower()
-                if m == "привет":
-                    msg(event.user_id, 'Привет, как дела?')
-                elif m == "хорошо":
-                    msg(event.user_id, 'Круто, и у меня!')
-                if m == 'кнопки':
-                    msgkbrd(event.user_id, 'держи кнопочки')
-        except:
-            print('ПРОИЗОШЛА ОШИБКА!!!')
+while True:
+    try:
+        for event in longpoll.listen():
+            if event.type == VkEventType.MESSAGE_NEW:
+                if event.to_me:
+                    m = event.text
+                    m = m.lower()
+                    if m == "привет":
+                        functions.msg(event.user_id, 'Привет, как дела?')
+                    elif m == "хорошо":
+                        functions.msg(event.user_id, 'Круто, и у меня!')
+                    if m == 'кнопки':
+                        functions.msgkbrd(event.user_id, 'держи кнопочки')
+    except:
+        pass

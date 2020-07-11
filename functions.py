@@ -40,5 +40,8 @@ def bluek(t): #синяя кнопка
 def whitek(t): #белая кнопка
     keyboard.add_button(t, color=VkKeyboardColor.DEFAULT)
 
+def urlk(t, url): #кнопка с ссылкой
+	keyboard.add_openlink_button(t, url)
+
 def newlinek(): #новая строка
     keyboard.add_line()
